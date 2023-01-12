@@ -1,16 +1,27 @@
-const dry = 1;
-const numbers = 15;
+const dry = 2;
+const numbers = 20;
 const result = dryNumber(dry, numbers);
 console.log(result);
 
 function dryNumber(dry, numbers) {
-	const arrayNUmber = [];
-  for (let index = dry; index <= numbers; index++) {
-    console.log(String(index));
-		if (String(index).includes(String(dry))) {
-			arrayNUmber.push(index);
-			console.log(index);
-		} 
-	}
-	return arrayNUmber;
+	return Array.from({ length: numbers }, (_, i) => i + 1).filter((val) =>
+		String(val).includes(String(dry))
+	);
 }
+
+/* function dryNumber(dry, numbers) {
+	const finalArray = [...Array(numbers + 1).keys()];
+	finalArray.shift();
+	return finalArray.filter((val) => val.toString().includes(dry.toString()));
+}
+ */
+/* function dryNumber(dry, numbers) {
+	let arrayNumber = new Array(numbers).fill('n');
+	let arrayResult = [];
+	for (let index = 1; index <= arrayNumber.length; index++) {
+		if (String(index).includes(String(dry))) {
+			arrayResult.push(index);
+		}
+	}
+	return arrayResult;
+} */
