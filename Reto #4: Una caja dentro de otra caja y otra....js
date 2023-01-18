@@ -6,6 +6,22 @@ const result = fitsInOneBox(boxes);
 console.log('result', result);
 
 function fitsInOneBox(boxes) {
+	const flag = boxes
+		.sort((a, b) => {
+			return a.l + a.w + a.h < b.l + b.w + b.h ? -1 : 1;
+		})
+		.reduce((acc, val) => {
+			if (acc.l < val.l && acc.w < val.w && acc.h < val.h) {
+				return val;
+			} else {
+				return false;
+			}
+		});
+	return flag !== false ? true : false;
+}
+
+/* 
+function fitsInOneBox(boxes) {
 	boxes.sort((a, b) => {
 		return a.l + a.w + a.h < b.l + b.w + b.h ? -1 : 1;
 	});
@@ -18,7 +34,7 @@ function fitsInOneBox(boxes) {
 	});
 	return flag !== false ? true : false;
 }
-
+ */
 /* function fitsInOneBox(boxes) {
 	boxes.sort((a, b) => {
 		const flag = a.l + a.w + a.h < b.l + b.w + b.h ? -1 : 1;
